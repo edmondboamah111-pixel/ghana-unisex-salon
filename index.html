@@ -109,4 +109,18 @@ function renderAdminServices(){$('adminServices').replaceChildren();services.for
 $('bookingForm').addEventListener('submit',async e=>{e.preventDefault();if(!db||!business){setText('bookingStatus','Booking is not configured yet. Please contact the shop directly.');return}const service=services.find(s=>s.id===$('bservice').value);if(!service){setText('bookingStatus','Please choose a valid service.');return}const payload={business_id:business.id,customer_name:$('bname').value.trim(),customer_phone:$('bphone').value.trim(),appointment_date:$('bdate').value,appointment_time:$('btime').value,service_id:service.id,service_name:service.name,status:'pending'};const {error}=await db.from('bookings').insert(payload);setText('bookingStatus',error?'Could not send booking request. Please contact the shop directly.':'Request sent. The shop will contact you to confirm.');if(!error)e.target.reset()});
 if(db){db.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;renderAuth()});loadPublic();refreshAuth()}else{loadPublic()}
 </script>
-</body></html>
+<!-- Supabase connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL =
+    "https://ozhtqxveppqxnvuznxup.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_GzFGrh6nw6iBIDeUZHdbQA_Bc_4hLNc";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+</script></body></html>
