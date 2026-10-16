@@ -110,7 +110,6 @@ $('bookingForm').addEventListener('submit',async e=>{e.preventDefault();if(!db||
 if(db){db.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;renderAuth()});loadPublic();refreshAuth()}else{loadPublic()}
 </script>
 <!-- Supabase connection -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
   const SUPABASE_URL =
